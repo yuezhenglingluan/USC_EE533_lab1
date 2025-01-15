@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
 
     server = gethostbyname(argv[1]);
     if(server == NULL){
-        fprint(stderr, "ERROR, no such host");
+        fprintf(stderr, "ERROR, no such host");
         exit(0);
     }
 
