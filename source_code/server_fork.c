@@ -2,7 +2,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-
+#include <stdlib.h>
 void error(char *msg){
     perror(msg);
     exit(1);
@@ -11,13 +11,13 @@ void error(char *msg){
 void dostuff(int sockfd){
     char buffer[256];
     bzero(buffer, 256);
-    int n = read(newsockfd, buffer, 255);
+    int n = read(sockfd, buffer, 255);
 
     if (n < 0) error("ERROR reading from socket");
     
     printf("Here is the message: %s", buffer);
 
-    n = write(newsockfd, "I got your message", 18);
+    n = write(sockfd, "I got your message", 18);
     if(n < 0) error("ERROR writing to socket");
 
     close(sockfd);
