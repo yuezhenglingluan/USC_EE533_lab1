@@ -35,7 +35,6 @@ int main(int argc, char *argv[]){
         exit(1);
     }
 
-    
     signal(SIGCHLD, SIG_IGN);   // zombie prevention
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
