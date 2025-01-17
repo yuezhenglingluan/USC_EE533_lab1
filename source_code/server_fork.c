@@ -3,6 +3,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdlib.h>
+#include <signal.h>
+
 void error(char *msg){
     perror(msg);
     exit(1);
@@ -32,6 +34,9 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "ERROR, no port provided");
         exit(1);
     }
+
+    
+    signal(SIGCHLD, SIG_IGN);   // zombie prevention
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if(sockfd<0) error("ERROR opening socket");
